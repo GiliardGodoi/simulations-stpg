@@ -3,6 +3,7 @@ import random
 from collections import deque
 from os import path
 import math
+from ga4stpg.graph import UGraph
 
 import networkx as nx
 from matplotlib import pyplot as plt
@@ -83,7 +84,7 @@ def hierarchy_pos(G, root=None, width=1., vert_gap = 0.2, vert_loc = 0, xcenter 
     return _hierarchy_pos(G, root, width, vert_gap, vert_loc, xcenter)
 
 def draw_common(_grafo, terminals, _ggvermelho, _ggazul):
-    
+
     G = nx.Graph(_grafo.edges)
     ggvermelho = nx.Graph(_ggvermelho.edges)
     ggazul = nx.Graph(_ggazul.edges)
@@ -121,12 +122,12 @@ def draw_common(_grafo, terminals, _ggvermelho, _ggazul):
 
     return G
 
-def draw_tree(graph, root : int):
+def draw_tree(tree, root : int):
 
-    if isinstance(graph,nx.Graph):
-        G = graph
-    elif isinstance(graph,Graph):
-        G = nx.Graph(sub1.edges)
+    if isinstance(tree,nx.Graph):
+        G = tree
+    elif isinstance(tree, UGraph):
+        G = nx.Graph(tree.edges)
     else:
         raise TypeError("Type graph not recognizable")
 
@@ -137,7 +138,7 @@ def draw_tree(graph, root : int):
     plt.show()
 
 def draw_radial(_graph, root, terminals):
-    
+
     graph = nx.Graph(_graph.edges)
 
 
